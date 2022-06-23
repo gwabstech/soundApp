@@ -101,7 +101,7 @@ class XylophoneApp extends StatelessWidget {
   }
 }
 
-setAudio(var num) {
+setAudio(int num) {
   AssetsAudioPlayer.newPlayer().open(
     Audio("assets/note$num.wav"),
     autoStart: true,
