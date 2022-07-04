@@ -10,88 +10,19 @@ class XylophoneApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.red,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
-                  onPressed: () {
-                    setAudio(1);
-                  },
-                  child: const Text("Play Me"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setAudio(2);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.yellowAccent,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
-                  child: const Text("Play Me"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setAudio(3);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.green,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
-                  child: const Text("Play Me"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setAudio(4);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
-                  child: const Text("Play Me"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setAudio(5);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.brown,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
-                  child: const Text("Play Me"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setAudio(6);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
-                  child: const Text("Play Me"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setAudio(7);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.purpleAccent,
-                      shape: const RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0)))),
-                  child: const Text("Play Me"),
-                ),
+                buildkey(po: 1),
+                buildkey(po: 2, color: Colors.amberAccent),
+                buildkey(po: 3, color: Colors.blue),
+                buildkey(po: 4),
+                buildkey(po: 5, color: Colors.yellowAccent),
+                buildkey(po: 6),
+                buildkey(po: 7, color: Colors.greenAccent),
               ],
             ),
           ),
@@ -106,5 +37,21 @@ setAudio(int num) {
     Audio("assets/note$num.wav"),
     autoStart: true,
     showNotification: true,
+  );
+}
+
+Expanded buildkey(
+    {int po = 1, Color color = Colors.red, String text = 'Play Me'}) {
+  return Expanded(
+    child: ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          primary: color,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(5.0)))),
+      onPressed: () {
+        setAudio(po);
+      },
+      child: Text(text),
+    ),
   );
 }
